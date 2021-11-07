@@ -4,17 +4,17 @@ import MoreStories from "../components/more-stories";
 import HeroPost from "../components/hero-post";
 import Intro from "../components/intro";
 import Layout from "../components/layout";
-import { homeQuery, indexQuery } from "../lib/queries";
+import { homeQuery, indexQuery, notificationQuery } from "../lib/queries";
 import { getClient, overlayDrafts } from "../lib/sanity.server";
 import PostBody from "../components/post-body";
 import CoverImage from "../components/cover-image";
 import { urlForImage } from "../lib/sanity";
 import Image from "next/image";
 
-export default function Index({ allPosts, preview, home }) {
+export default function Index({ allPosts, preview, home, notification }) {
   return (
     <>
-      <Layout preview={preview}>
+      <Layout preview={preview} notification={notification}>
         <Head>
           <title>{home?.title}</title>
         </Head>
@@ -110,10 +110,10 @@ export default function Index({ allPosts, preview, home }) {
 
 export async function getStaticProps({ preview = false }) {
   const allPosts = overlayDrafts(await getClient(preview).fetch(indexQuery));
-
   const home = await getClient(preview).fetch(homeQuery);
+  const notification = await getClient(preview).fetch(notificationQuery)
 
   return {
-    props: { allPosts, preview, home },
+    props: { allPosts, preview, home, notification },
   };
 }

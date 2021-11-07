@@ -20,3 +20,7 @@
 .markdown ul {
   @apply list-disc ml-12 space-y-2
 }
+
+.markdown a {
+  @apply underline
+}
