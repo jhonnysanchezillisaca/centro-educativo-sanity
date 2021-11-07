@@ -69,8 +69,8 @@ export default function Index({ allPosts, preview, home }) {
               <PostBody content={home?.section3Content} />
               <div className="mx-auto row-start-1 md:row-start-auto">
                 <Image
-                  width="300"
-                  height="300"
+                  width="400"
+                  height="400"
                   className="inline-block"
                   src={urlForImage(home?.section3Image).url()}
                 />
