@@ -65,7 +65,7 @@ export default function Index({ allPosts, preview, home }) {
             <h3 className="text-3xl md:text-5xl font-semibold tracking-tight leading-tight">
               {home?.section3Title}
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 mb-6 md:mb-12">
               <PostBody content={home?.section3Content} />
               <div className="mx-auto row-start-1 md:row-start-auto">
                 <Image

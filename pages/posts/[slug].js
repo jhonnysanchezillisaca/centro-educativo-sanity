@@ -1,32 +1,36 @@
-import Head from 'next/head'
-import { useRouter } from 'next/router'
-import ErrorPage from 'next/error'
-import Container from '../../components/container'
-import PostBody from '../../components/post-body'
-import MoreStories from '../../components/more-stories'
-import Header from '../../components/header'
-import PostHeader from '../../components/post-header'
-import SectionSeparator from '../../components/section-separator'
-import Layout from '../../components/layout'
-import PostTitle from '../../components/post-title'
-import { postQuery, postSlugsQuery } from '../../lib/queries'
-import { urlForImage, usePreviewSubscription } from '../../lib/sanity'
-import { sanityClient, getClient, overlayDrafts } from '../../lib/sanity.server'
+import Head from "next/head";
+import { useRouter } from "next/router";
+import ErrorPage from "next/error";
+import Container from "../../components/container";
+import PostBody from "../../components/post-body";
+import MoreStories from "../../components/more-stories";
+import Header from "../../components/header";
+import PostHeader from "../../components/post-header";
+import SectionSeparator from "../../components/section-separator";
+import Layout from "../../components/layout";
+import PostTitle from "../../components/post-title";
+import { postQuery, postSlugsQuery } from "../../lib/queries";
+import { urlForImage, usePreviewSubscription } from "../../lib/sanity";
+import {
+  sanityClient,
+  getClient,
+  overlayDrafts,
+} from "../../lib/sanity.server";
 
 export default function Post({ data = {}, preview }) {
-  const router = useRouter()
+  const router = useRouter();
 
-  const slug = data?.post?.slug
+  const slug = data?.post?.slug;
   const {
     data: { post, morePosts },
   } = usePreviewSubscription(postQuery, {
     params: { slug },
     initialData: data,
     enabled: preview && slug,
-  })
+  });
 
   if (!router.isFallback && !slug) {
-    return <ErrorPage statusCode={404} />
+    return <ErrorPage statusCode={404} />;
   }
 
   return (
@@ -39,9 +43,7 @@ export default function Post({ data = {}, preview }) {
           <>
             <article>
               <Head>
-                <title>
-                  {post.title}
-                </title>
+                <title>{post.title}</title>
                 {post.coverImage && (
                   <meta
                     key="ogImage"
@@ -49,7 +51,7 @@ export default function Post({ data = {}, preview }) {
                     content={urlForImage(post.coverImage)
                       .width(1200)
                       .height(627)
-                      .fit('crop')
+                      .fit("crop")
                       .url()}
                   />
                 )}
@@ -59,7 +61,9 @@ export default function Post({ data = {}, preview }) {
                 coverImage={post.coverImage}
                 date={post.date}
               />
-              <PostBody content={post.content} />
+              <div className="max-w-2xl mx-auto">
+                <PostBody content={post.content} />
+              </div>
             </article>
             <SectionSeparator />
             {morePosts.length > 0 && <MoreStories posts={morePosts} />}
@@ -67,13 +71,16 @@ export default function Post({ data = {}, preview }) {
         )}
       </Container>
     </Layout>
-  )
+  );
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  const { post, morePosts, pageTitle } = await getClient(preview).fetch(postQuery, {
-    slug: params.slug,
-  })
+  const { post, morePosts, pageTitle } = await getClient(preview).fetch(
+    postQuery,
+    {
+      slug: params.slug,
+    }
+  );
 
   return {
     props: {
@@ -84,13 +91,13 @@ export async function getStaticProps({ params, preview = false }) {
         pageTitle,
       },
     },
-  }
+  };
 }
 
 export async function getStaticPaths() {
-  const paths = await sanityClient.fetch(postSlugsQuery)
+  const paths = await sanityClient.fetch(postSlugsQuery);
   return {
     paths: paths.map((slug) => ({ params: { slug } })),
     fallback: true,
-  }
+  };
 }
