@@ -25,14 +25,14 @@ export default function Index({ allPosts, preview, home }) {
             mainImage={home?.mainImage}
           />
           <div className="max-w-5xl mx-auto mb-12">
-            <h3 className="text-3xl md:text-5xl font-semibold tracking-tighter leading-tight">
+            <h3 className="text-3xl md:text-5xl font-semibold tracking-tight leading-tight">
               {home?.section1Title}
             </h3>
             <PostBody content={home?.section1Content} />
-            <h3 className="text-3xl md:text-5xl font-semibold tracking-tighter leading-tight">
+            <h3 className="text-3xl md:text-5xl font-semibold tracking-tight leading-tight">
               {home?.section2Title}
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4 md:mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 md:mb-12">
               <div>
                 <PostBody content={home?.section2Content1} />
                 <Image
@@ -62,12 +62,12 @@ export default function Index({ allPosts, preview, home }) {
               </div>
             </div>
 
-            <h3 className="text-3xl md:text-5xl font-semibold tracking-tighter leading-tight">
+            <h3 className="text-3xl md:text-5xl font-semibold tracking-tight leading-tight">
               {home?.section3Title}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2">
               <PostBody content={home?.section3Content} />
-              <div className="mx-auto">
+              <div className="mx-auto row-start-1 md:row-start-auto">
                 <Image
                   width="300"
                   height="300"
@@ -78,13 +78,13 @@ export default function Index({ allPosts, preview, home }) {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h3 className="text-3xl md:text-5xl font-semibold tracking-tighter leading-tight mb-4">
+                <h3 className="text-3xl md:text-5xl font-semibold tracking-tight leading-tight mb-4">
                   {home?.section4Title}
                 </h3>
                 <PostBody content={home?.section4Content} />
               </div>
               <div>
-                <h3 className="text-3xl md:text-5xl font-semibold tracking-tighter leading-tight mb-4">
+                <h3 className="text-3xl md:text-5xl font-semibold tracking-tight leading-tight mb-4">
                   {home?.section5Title}
                 </h3>
                 <PostBody content={home?.section5Content} />
