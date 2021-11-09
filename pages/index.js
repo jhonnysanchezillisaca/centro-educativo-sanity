@@ -111,7 +111,7 @@ export default function Index({ allPosts, preview, home, notification }) {
 export async function getStaticProps({ preview = false }) {
   const allPosts = overlayDrafts(await getClient(preview).fetch(indexQuery));
   const home = await getClient(preview).fetch(homeQuery);
-  const notification = await getClient(preview).fetch(notificationQuery)
+  const notification = await getClient(preview).fetch(notificationQuery);
 
   return {
     props: { allPosts, preview, home, notification },

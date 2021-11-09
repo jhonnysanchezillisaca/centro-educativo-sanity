@@ -34,7 +34,7 @@ export default function Post({ data = {}, preview }) {
   }
 
   return (
-    <Layout preview={preview} notification={data?.notification}>
+    <Layout preview={preview} notification={notification}>
       <Container>
         <Header title={data?.pageTitle?.title} />
         {router.isFallback ? (
