@@ -9,7 +9,7 @@ import PostHeader from "../../components/post-header";
 import SectionSeparator from "../../components/section-separator";
 import Layout from "../../components/layout";
 import PostTitle from "../../components/post-title";
-import { postQuery, postSlugsQuery } from "../../lib/queries";
+import { notificationQuery, postQuery, postSlugsQuery } from "../../lib/queries";
 import { urlForImage, usePreviewSubscription } from "../../lib/sanity";
 import {
   sanityClient,
@@ -22,7 +22,7 @@ export default function Post({ data = {}, preview }) {
 
   const slug = data?.post?.slug;
   const {
-    data: { post, morePosts },
+    data: { post, morePosts, notification },
   } = usePreviewSubscription(postQuery, {
     params: { slug },
     initialData: data,
@@ -34,7 +34,7 @@ export default function Post({ data = {}, preview }) {
   }
 
   return (
-    <Layout preview={preview}>
+    <Layout preview={preview} notification={data?.notification}>
       <Container>
         <Header title={data?.pageTitle?.title} />
         {router.isFallback ? (
@@ -82,6 +82,9 @@ export async function getStaticProps({ params, preview = false }) {
     }
   );
 
+  const notification = await getClient(preview).fetch(notificationQuery)
+
+
   return {
     props: {
       preview,
@@ -89,6 +92,7 @@ export async function getStaticProps({ params, preview = false }) {
         post,
         morePosts: overlayDrafts(morePosts),
         pageTitle,
+        notification,
       },
     },
   };
