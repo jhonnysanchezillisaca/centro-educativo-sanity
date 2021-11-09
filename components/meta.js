@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import { CMS_NAME, HOME_OG_IMAGE_URL } from '../lib/constants'
 
 export default function Meta() {
   return (
@@ -36,7 +35,7 @@ export default function Meta() {
         name="description"
         content={`Web del centro educativo bahá'í en el sur de Sabadell`}
       />
-      <meta property="og:image" content={HOME_OG_IMAGE_URL} key="ogImage" />
+      {/* <meta property="og:image" content={HOME_OG_IMAGE_URL} key="ogImage" /> */}
     </Head>
   )
 }
