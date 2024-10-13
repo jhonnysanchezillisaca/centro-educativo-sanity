@@ -81,7 +81,7 @@ export default function Index({ allPosts, preview, home, notification }) {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 mb-6 md:mb-12">
               <PostBody content={home?.section3Content} />
-              <div className="mx-auto row-start-1 md:row-start-auto">
+              <div className="mx-auto row-start-1 mt-6 md:mt-0 md:row-start-auto">
                 <Image
                   width="400"
                   height="400"
