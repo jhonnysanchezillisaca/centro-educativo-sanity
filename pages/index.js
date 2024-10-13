@@ -32,7 +32,7 @@ export default function Index({ allPosts, preview, home, notification }) {
             <h3 className="text-3xl md:text-5xl font-semibold tracking-tight leading-tight">
               {home?.section2Title}
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 md:mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 md:mb-12">
               <div>
                 <PostBody content={home?.section2Content1} />
                 <Image
@@ -60,6 +60,20 @@ export default function Index({ allPosts, preview, home, notification }) {
                   src={urlForImage(home?.section2Image3).url()}
                 />
               </div>
+              {
+                home?.section2Image4 && home?.section2Content4 
+                ? 
+                <div>
+                  <PostBody content={home?.section2Content4} />
+                  <Image
+                    width="300"
+                    height="300"
+                    layout="responsive"
+                    src={urlForImage(home?.section2Image4)?.url()}
+                  /> 
+              </div>
+                : null 
+              }
             </div>
 
             <h3 className="text-3xl md:text-5xl font-semibold tracking-tight leading-tight">
