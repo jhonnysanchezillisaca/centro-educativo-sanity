@@ -5,13 +5,13 @@ export default function Notification({ content, url }) {
   return (
     <div
       className={cn('border-b', {
-        'bg-accent-7 border-accent-7 text-white': !!content,
+        'bg-accent-7 border-accent-7 text-white -mt-1': !!content,
         'bg-accent-1 border-accent-2': !content,
       })}
     >
       {!!content &&
         <Container>
-          <div className="py-2 text-center">
+          <div className="py-3 text-center">
             <>
               <a
                 href={url}
