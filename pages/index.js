@@ -1,13 +1,11 @@
 import Head from "next/head";
 import Container from "../components/container";
 import MoreStories from "../components/more-stories";
-import HeroPost from "../components/hero-post";
 import Intro from "../components/intro";
 import Layout from "../components/layout";
 import { homeQuery, indexQuery, notificationQuery } from "../lib/queries";
 import { getClient, overlayDrafts } from "../lib/sanity.server";
 import PostBody from "../components/post-body";
-import CoverImage from "../components/cover-image";
 import { urlForImage } from "../lib/sanity";
 import Image from "next/image";
 
@@ -105,7 +103,7 @@ export default function Index({ allPosts, preview, home, notification }) {
               </div>
             </div>
           </div>
-          {allPosts.length > 0 && <MoreStories posts={allPosts} />}
+          {allPosts.length > 0 && <MoreStories title={home.moreStoriesTitle} posts={allPosts} />}
         </Container>
       </Layout>
     </>
