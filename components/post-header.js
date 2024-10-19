@@ -10,11 +10,13 @@ export default function PostHeader({ title, coverImage, date }) {
       <div className="mb-8 md:mb-16 sm:mx-0">
         <CoverImage title={title} image={coverImage} />
       </div>
-      <div className="max-w-2xl mx-auto">
-        <div className="mb-6 text-lg">
-          <Date dateString={date} />
+      {date && (
+        <div className="max-w-2xl mx-auto">
+          <div className="mb-6 text-lg">
+            <Date dateString={date} />
+          </div>
         </div>
-      </div>
+      )}
     </>
   )
 }

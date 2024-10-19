@@ -8,6 +8,7 @@ import { getClient, overlayDrafts } from "../lib/sanity.server";
 import PostBody from "../components/post-body";
 import { urlForImage } from "../lib/sanity";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Index({ allPosts, preview, home, notification }) {
   return (
@@ -27,51 +28,37 @@ export default function Index({ allPosts, preview, home, notification }) {
               {home?.section1Title}
             </h3>
             <PostBody content={home?.section1Content} />
-            <h3 className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight mt-10 underline">
+            <h3 className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight mt-10 underline mb-4">
               {home?.section2Title}
             </h3>
+            <div>
+
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6 md:mb-12">
-              <div className="flex flex-col justify-between ">
-                <PostBody content={home?.section2Content1} />
-                <Image
-                  width="300"
-                  height="300"
-                  layout="responsive"
-                  src={urlForImage(home?.section2Image1).url()}
-                />
-              </div>
-              <div className="flex flex-col justify-between">
-                <PostBody content={home?.section2Content2} />
-                <Image
-                  width="300"
-                  height="300"
-                  layout="responsive"
-                  src={urlForImage(home?.section2Image2).url()}
-                />
-              </div>
-              <div className="flex flex-col justify-between">
-                <PostBody content={home?.section2Content3} />
-                <Image
-                  width="300"
-                  height="300"
-                  layout="responsive"
-                  src={urlForImage(home?.section2Image3).url()}
-                />
-              </div>
-              {
-                home?.section2Image4 && home?.section2Content4 
-                ? 
-                <div className="flex flex-col justify-between">
-                  <PostBody content={home?.section2Content4} />
-                  <Image
-                    width="300"
-                    height="300"
-                    layout="responsive"
-                    src={urlForImage(home?.section2Image4)?.url()}
-                  /> 
-              </div>
-                : null 
-              }
+              {home?.section2Activities?.map((activity) => (
+                <Link href={`/activitats/${activity.slug.current}`}>
+                  <div className="flex flex-col justify-between py-4 cursor-pointer rounded-md hover:ring-2 hover:ring-offset-8 hover:ring-offset-white hover:ring-black">
+                    <div className="mb-4">
+                      <h3 className="text-3xl font-semibold mb-4" >{activity.title}</h3>
+                      <h4 className="text-lg mb-6 font-semibold text-gray-800 leading-tight">{activity.subtitle}</h4>
+                      <Image
+                        width="300"
+                        height="300"
+                        layout="responsive"
+                        src={urlForImage(activity?.coverImage).url()}
+                      />
+                    </div>
+                    <div className="flex flex-col justify-between">
+                      <PostBody content={activity?.excerpt} />
+                      <div className="mt-4 w-full text-lg justify-center bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+                        <Link href={`/activitats/${activity.slug.current}`}>
+                          Saber més
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))}
             </div>
 
             <h3 className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight mt-10 underline">
