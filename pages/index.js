@@ -16,6 +16,7 @@ export default function Index({ allPosts, preview, home, notification }) {
       <Layout preview={preview} notification={notification}>
         <Head>
           <title>{home?.title}</title>
+          <link rel="preload" as="image" href={urlForImage(home?.mainImage).height(1000).width(2000).url()}></link>
         </Head>
         <Container>
           <Intro
@@ -36,7 +37,7 @@ export default function Index({ allPosts, preview, home, notification }) {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6 md:mb-12">
               {home?.section2Activities?.map((activity) => (
-                <Link href={`/activitats/${activity.slug.current}`}>
+                <Link key={activity.slug.current} href={`/activitats/${activity.slug.current}`}>
                   <div className="flex flex-col justify-between py-4 cursor-pointer rounded-md hover:ring-2 hover:ring-offset-8 hover:ring-offset-white hover:ring-black">
                     <div className="mb-4">
                       <h3 className="text-3xl font-semibold mb-4" >{activity.title}</h3>
@@ -64,7 +65,7 @@ export default function Index({ allPosts, preview, home, notification }) {
             <h3 className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight mt-10 underline">
               {home?.section3Title}
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 mb-6 md:mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 mb-6 md:mb-12 md:px-3">
               <PostBody content={home?.section3Content} />
               <div className="mx-auto row-start-1 mt-6 md:mt-0 md:row-start-auto">
                 <Image
@@ -75,7 +76,7 @@ export default function Index({ allPosts, preview, home, notification }) {
                 />
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-0 md:px-3">
               <div className="flex flex-col items-center">
                 <h3 className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight mb-4 underline">
                   {home?.section4Title}
