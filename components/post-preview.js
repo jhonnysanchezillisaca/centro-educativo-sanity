@@ -12,7 +12,7 @@ export default function PostPreview({
   slug,
 }) {
   return (
-    <div className='cursor-pointer hover:ring-2 hover:ring-offset-4 hover:ring-offset-white hover:ring-black rounded'>
+    <div className='cursor-pointer hover:ring-2 hover:ring-offset-4 hover:ring-offset-white hover:ring-black rounded my-4'>
       <Link href={`/posts/${slug}`}>
         <div>
 
