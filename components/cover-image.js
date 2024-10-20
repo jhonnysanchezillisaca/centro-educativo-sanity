@@ -6,6 +6,7 @@ import { urlForImage } from '../lib/sanity'
 export default function CoverImage({ title, slug, image: source }) {
   const image = source ? (
     <Image
+      priority={true}
       width={2000}
       height={1000}
       alt={`Cover Image for ${title}`}

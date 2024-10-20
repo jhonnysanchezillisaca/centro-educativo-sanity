@@ -16,7 +16,6 @@ export default function Index({ allPosts, preview, home, notification }) {
       <Layout preview={preview} notification={notification}>
         <Head>
           <title>{home?.title}</title>
-          <link rel="preload" as="image" href={urlForImage(home?.mainImage).height(1000).width(2000).url()}></link>
         </Head>
         <Container>
           <Intro
